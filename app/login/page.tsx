@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import Header from "../_components/header"
-import { FormEvent, useState } from "react"
+import {useState } from "react"
 
 export default function Home() {
     const Styles: {
@@ -48,7 +48,7 @@ export default function Home() {
         }
     }
 
-    function handleSubmit(event: FormEvent) {
+    function handleSubmit(event) {
         event?.preventDefault();
         const userInfo = `
             Email Address: ${user.userEmailAddress}
