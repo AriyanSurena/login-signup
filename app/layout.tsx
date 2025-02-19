@@ -1,4 +1,5 @@
-import type { Metadata } from "next";import { vazir } from "./fonts";
+import type { Metadata } from "next";
+import { vazir } from "./fonts";
 import "./globals.css";
 import Container from "./_components/Container";
 
