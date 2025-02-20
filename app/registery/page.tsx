@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Header from "../_components/header";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function RegistrationPage() {
   const Styles = {
@@ -170,7 +171,7 @@ export default function RegistrationPage() {
       Email Address: ${person.userEmailAddress}
       Password: ${person.userPassword}
       Confirm Password: ${person.userPassConfirm}
-      Accepted Rules: ${person.userAcceptedRules ? 'Yes' : 'No'}
+      Accepted Rules: ${person.userAcceptedRules ? "Yes" : "No"}
     `;
     alert(userInfo);
   };
@@ -186,7 +187,7 @@ export default function RegistrationPage() {
         handleSubmit(event);
       }}
     >
-      <Header text={"فرم ثبت نام"} />
+      <Header text={"فرم ثبت نام"} path={usePathname()} />
 
       <label className={Styles.labelStyle_1}>
         <span className={Styles.labelHeadStyle_1}>نام :</span>

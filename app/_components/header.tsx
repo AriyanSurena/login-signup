@@ -1,15 +1,15 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import {ModeToggle} from "./ModeChecker";
-export default function Header({ text }: { text: string }) {
+import ModeToggle from "./ModeToggleButton";
 
-  return (
-    <span className="flex justify-between items-center">
-      <h1 id="registery_Page-title" className="form-page_h1">
-        {text}
-      </h1>
-      <div className="flex items-center dark">
-        <ModeToggle/>
+export default function Header({ text, path }: { text: string; path: string }) {
+  const [backIcon, setBackIcon] = useState<React.ReactNode | null>(null);
+  useEffect(() => {
+    if (path === "/") {
+      setBackIcon(null);
+    } else {
+      setBackIcon(
         <Link href={"./"} className="p-4 cursor-pointer" title="بازگشت">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +22,16 @@ export default function Header({ text }: { text: string }) {
             <path d="M400-80 0-480l400-400 61 61.67L122.67-480 461-141.67 400-80Z" />
           </svg>
         </Link>
+      );
+    }
+  }, [path]);
+
+  return (
+    <span className="flex justify-between items-center">
+      <h1 id="registery_Page-title">{text}</h1>
+      <div className="flex items-center">
+        <ModeToggle />
+        {backIcon}
       </div>
     </span>
   );
