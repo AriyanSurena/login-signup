@@ -295,7 +295,7 @@ export default function RegistrationPage() {
       />
       <Link
         href={"./../login/"}
-        className="text-blue-500 hover:text-blue-950 dark:hover:text-blue-100"
+        className="text-blue-500 hover:text-teal-500 dark:hover:text-teal-500"
       >
         از قبل حساب دارید؟ وارد شوید.
       </Link>

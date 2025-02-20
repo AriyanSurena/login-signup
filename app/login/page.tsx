@@ -116,7 +116,7 @@ export default function Home() {
 
       <Link
         href={"./../registery/"}
-        className="text-blue-500 hover:text-blue-950 dark:hover:text-blue-100"
+        className="text-blue-500 hover:text-teal-500 dark:hover:text-teal-500"
       >
         حسابی ندارید؟ ثبت نام کنید.
       </Link>
