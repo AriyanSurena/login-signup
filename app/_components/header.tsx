@@ -13,7 +13,7 @@ export default function Header({ text, path }: { text: string; path: string }) {
         <Link href={"./"} className="p-4 cursor-pointer" title="بازگشت">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="fill-blue-500 hover:fill-blue-950 dark:hover:fill-blue-100"
+            className="fill-blue-500 hover:fill-blue-950 cursor-pointer dark:hover:fill-emerald-500"
             width="40px"
             height="40px"
             viewBox="0 -960 960 960"

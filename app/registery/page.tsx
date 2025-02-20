@@ -290,7 +290,7 @@ export default function RegistrationPage() {
         type="submit"
         id="submit"
         disabled={isSubmitable}
-        className={`${Styles.inputStyle_1} disabled:bg-slate-500 disabled:hover:bg-slate-500 disabled:text-slate-50 bg-[#10B981] hover:bg-[#047857] transition duration-150 ease-in-out dark:bg-[#059669] dark:hover:bg-[#065F46] opacity-90 w-[100%] p-4 m-4 mx-auto text-xl cursor-pointer select-none border-none rounded text-center hover:text-white hover:opacity-1`}
+        className={`${Styles.inputStyle_1} disabled:bg-slate-500 disabled:hover:bg-slate-500 disabled:text-slate-50 bg-[#10B981] hover:bg-[#047857] transition duration-150 dark:bg-[#059669] dark:hover:bg-[#065F46] opacity-90 w-[100%] p-4 m-4 mx-auto text-xl cursor-pointer select-none border-none rounded text-center hover:text-white hover:opacity-1`}
         value="ثبت نام"
       />
       <Link
