@@ -83,6 +83,7 @@ export default function Home() {
           id="userEmailAddress"
           className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
           placeholder="لطفا آدرس ایمیل را وارد کنید"
+          dir="ltr"
           required
           onChange={(event) => {
             handleInputs(event.target.value, "userEmailAddress");
@@ -98,6 +99,7 @@ export default function Home() {
           name="userPass"
           id="userPass"
           className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
+          dir="ltr"
           placeholder="لطفا رمز حساب کاربری را وارد کنید"
           required
           onChange={(event) => {

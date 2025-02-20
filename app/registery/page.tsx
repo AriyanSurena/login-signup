@@ -228,6 +228,7 @@ export default function RegistrationPage() {
           name="userEmailAddress"
           id="userEmailAddress"
           className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
+          dir="ltr"
           placeholder="لطفا آدرس ایمیل را وارد کنید"
           required
           onChange={(event) => {
@@ -244,6 +245,7 @@ export default function RegistrationPage() {
           name="userPassword"
           id="userPassword"
           className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
+          dir="ltr"
           placeholder="لطفا رمز حساب کاربری را وارد کنید"
           required
           onChange={(event) => {
@@ -260,6 +262,7 @@ export default function RegistrationPage() {
           name="userPassConfirm"
           id="userPassConfirm"
           className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
+          dir="ltr"
           placeholder="رمز حساب کاربری را دوباره وارد کنید"
           required
           onChange={(event) => {
