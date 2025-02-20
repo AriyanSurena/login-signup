@@ -12,7 +12,7 @@ export default function Home() {
   } = {
     labelStyle_1: "flex flex-col select-none cursor-pointer gap-2",
     labelHeadStyle_1: "flex flex-col select-none cursor-pointer gap-2",
-    inputStyle_1: "rounded p-2",
+    inputStyle_1: "rounded p-2 text-black",
   };
 
   interface User {
@@ -81,7 +81,7 @@ export default function Home() {
           type="email"
           name="userEmailAddress"
           id="userEmailAddress"
-          className={Styles.inputStyle_1}
+          className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
           placeholder="لطفا آدرس ایمیل را وارد کنید"
           required
           onChange={(event) => {
@@ -97,7 +97,7 @@ export default function Home() {
           type="password"
           name="userPass"
           id="userPass"
-          className={Styles.inputStyle_1}
+          className={`${Styles.inputStyle_1} text-left placeholder:text-right`}
           placeholder="لطفا رمز حساب کاربری را وارد کنید"
           required
           onChange={(event) => {
