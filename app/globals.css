@@ -36,3 +36,7 @@ form {
   font-size: 0.85rem;
   border-left: 3px solid red;
 }
+
+::placeholder, a{
+  user-select: none;
+}
