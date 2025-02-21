@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
-import Header from "../_components/header";
+import Header from "@/app/_components/Header";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import SubmitInput from "@/app/_components/SubmitInput";
+import FormFooter from "../_components/FormFooter";
 
 export default function RegistrationPage() {
   const Styles = {
@@ -170,11 +172,11 @@ export default function RegistrationPage() {
 
       case "rulesCheckBox":
         {
-            setPersonInfo((prevInfo) => ({
-              ...prevInfo,
-              userAcceptedRules: value as boolean,
-            }));
-            setIsRulesAccepted(prev => !prev);
+          setPersonInfo((prevInfo) => ({
+            ...prevInfo,
+            userAcceptedRules: value as boolean,
+          }));
+          setIsRulesAccepted((prev) => !prev);
         }
         break;
 
@@ -197,28 +199,39 @@ export default function RegistrationPage() {
   };
 
   const [isSubmitable, setIsSubmitable] = useState<boolean>(true); // true means Disabed mode is Active.
-  const [isPasswordMatch, setPasswordMatch] = useState(false); 
-  useEffect(()=>{
-    if(person.userPassword === person.userPassConfirm) {
+  const [isPasswordMatch, setPasswordMatch] = useState(false);
+  useEffect(() => {
+    if (person.userPassword === person.userPassConfirm) {
       setPasswordMatch(true);
     } else setPasswordMatch(false);
-  }, [person.userPassword, person.userPassConfirm])
-  
+  }, [person.userPassword, person.userPassConfirm]);
 
   useEffect(() => {
-    const isFormValid = isFNameTrue && 
-      isLNameTrue && 
-      isEmailTrue && 
-      isPasswordMatch && 
-      isPassTrue && 
-      isPassConfirmwed && 
+    const isFormValid =
+      isFNameTrue &&
+      isLNameTrue &&
+      isEmailTrue &&
+      isPasswordMatch &&
+      isPassTrue &&
+      isPassConfirmwed &&
       isRulesAccepted;
-    if(isFormValid) {
+    if (isFormValid) {
       setIsSubmitable(false);
     } else {
       setIsSubmitable(true);
     }
-  }, [isFNameTrue, isLNameTrue, isEmailTrue, isPasswordMatch, person.userPassword, person.userPassConfirm, person.userAcceptedRules, isPassTrue, isPassConfirmwed, isRulesAccepted])
+  }, [
+    isFNameTrue,
+    isLNameTrue,
+    isEmailTrue,
+    isPasswordMatch,
+    person.userPassword,
+    person.userPassConfirm,
+    person.userAcceptedRules,
+    isPassTrue,
+    isPassConfirmwed,
+    isRulesAccepted,
+  ]);
 
   return (
     <form
@@ -327,19 +340,8 @@ export default function RegistrationPage() {
         <span className={Styles.labelHeadStyle_1}>قوانین را قبول دارم.</span>
       </label>
 
-      <input
-        type="submit"
-        id="submit"
-        disabled={isSubmitable}
-        className={`${Styles.inputStyle_1} disabled:bg-slate-500 disabled:hover:bg-slate-500 disabled:text-slate-50 bg-[#10B981] hover:bg-[#047857] transition duration-150 dark:bg-[#059669] dark:hover:bg-[#065F46] opacity-90 w-[100%] p-4 m-4 mx-auto text-xl cursor-pointer select-none border-none rounded text-center hover:text-white hover:opacity-1`}
-        value="ثبت نام"
-      />
-      <Link
-        href={"./../login/"}
-        className="text-blue-500 hover:text-teal-500 dark:hover:text-teal-500"
-      >
-        از قبل حساب دارید؟ وارد شوید.
-      </Link>
+      <SubmitInput value="ثبت نام" active={isSubmitable} variant={1}/>
+      <FormFooter url="./../login/" value="از قبل حساب دارید؟ وارد شوید."/>
     </form>
   );
 }

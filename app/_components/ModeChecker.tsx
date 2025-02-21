@@ -1,11 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useEffect, useState } from "react";
 
-function useModeChecker(): 0 | 1 | undefined {
+export default function useModeChecker(): 0 | 1 | undefined {
   const [modeResult, setModeResult] = useState<0 | 1>();
   let mediaQuery: MediaQueryList;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const updateMode = () => {
@@ -27,5 +27,3 @@ function useModeChecker(): 0 | 1 | undefined {
   }, []);
   return modeResult;
 }
-
-export default useModeChecker;

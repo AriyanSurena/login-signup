@@ -28,7 +28,7 @@ export default function Header({ text, path }: { text: string; path: string }) {
 
   return (
     <span className="flex justify-between items-center">
-      <h1 id="registery_Page-title">{text}</h1>
+      <h1>{text}</h1>
       <div className="flex items-center">
         <ModeToggle />
         {backIcon}

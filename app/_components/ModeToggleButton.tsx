@@ -1,4 +1,7 @@
 "use client";
+import React from "react";
+import { useTheme } from "@/app/_components/ThemeContext";
+
 const Icons = [
   {
     name: "Dark Mode",
@@ -30,12 +33,9 @@ const Icons = [
   },
 ];
 
-import React from "react";
-import { useTheme } from "./ThemeContext"; // مسیر صحیح را وارد کنید
-
 const ModeToggle = () => {
   const { isDarkMode, toggleTheme } = useTheme();
-  const currentIcon = isDarkMode ? Icons[1].code : Icons[0].code; // فرض می‌کنیم Icons به درستی تعریف شده‌اند
+  const currentIcon = isDarkMode ? Icons[1].code : Icons[0].code;
 
   return (
     <div onClick={toggleTheme} className="cursor-pointer">
