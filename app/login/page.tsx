@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Header from "../_components/header";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Home() {
@@ -24,7 +24,10 @@ export default function Home() {
     userEmailAddress: "",
     userPassword: "",
   });
-
+  
+  
+  const [isEmailTrue, setIsEmailTrue] = useState<boolean>(false);
+  const [isLoginable, setIsLogiable] = useState<boolean>(true);
   function handleInputs(value: string, key: string) {
     switch (key) {
       case "userEmailAddress":
@@ -38,8 +41,10 @@ export default function Home() {
               ...prevInfo,
               userEmailAddress: value as string,
             }));
+            setIsEmailTrue(true);
           } else {
             errorBox.innerHTML = "ایمیل نا معتبر است.";
+            setIsEmailTrue(false);
           }
         }
         break;
@@ -51,20 +56,25 @@ export default function Home() {
           }));
         }
         break;
+        
+        default:
+          break;
+        }
+      }
 
-      default:
-        break;
-    }
-  }
-
-  function handleSubmit({ event }: { event: FormEvent<HTMLFormElement> }) {
-    event?.preventDefault();
-    const userInfo = `
-            Email Address: ${user.userEmailAddress}
-            Password: ${user.userPassword}
-        `;
-    alert(userInfo);
-  }
+      useEffect(() => {
+        if(isEmailTrue && user.userPassword) setIsLogiable(false);
+          else setIsLogiable(true);
+      }, [isEmailTrue, user.userPassword])
+      
+      function handleSubmit({ event }: { event: FormEvent<HTMLFormElement> }): void {
+        event?.preventDefault();
+        const userInfo = `
+                Email Address: ${user.userEmailAddress}
+                Password: ${user.userPassword}
+            `;
+        alert(userInfo);
+      }
 
   return (
     <form
@@ -110,7 +120,8 @@ export default function Home() {
       </label>
       <input
         type="submit"
-        className="opacity-90 hover:opacity-1 my-4 hover:text-white w-[100%] p-4 m-4 mx-auto text-xl cursor-pointer select-none border-none rounded text-center bg-[#1D4ED8] hover:bg-[#173cb3] transition duration-150 dark:bg-[#4F46E5] dark:hover:bg-[#0026a1]"
+        disabled={isLoginable}
+        className="opacity-90 hover:opacity-1 my-4 disabled:bg-slate-500 disabled:hover:bg-slate-500 disabled:text-slate-50 hover:text-white w-[100%] p-4 m-4 mx-auto text-xl cursor-pointer select-none border-none rounded text-center bg-[#1D4ED8] hover:bg-[#173cb3] transition duration-150 dark:bg-[#4F46E5] dark:hover:bg-[#0026a1]"
         value="ورود"
       />
 
