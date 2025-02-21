@@ -1,6 +1,6 @@
 "use client";
 import LinkButton from "@/app/_components/LinkButton";
-import Header from "./_components/Header";
+import FormHeader from "@/app/_components/FormHeader";
 import { usePathname } from "next/navigation";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
   };
   return (
     <section>
-      <Header text={"ثبت نام یا ورود"} path={thisPath} />
+      <FormHeader text={"ثبت نام یا ورود"} path={thisPath} />
       <div className="flex flex-col">
         <LinkButton
           url={"./registery"}

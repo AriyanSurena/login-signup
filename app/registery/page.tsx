@@ -1,9 +1,9 @@
 "use client";
-import Header from "@/app/_components/Header";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import SubmitInput from "@/app/_components/SubmitInput";
 import FormFooter from "../_components/FormFooter";
+import FormHeader from "@/app/_components/FormHeader";
 
 export default function RegistrationPage() {
   const Styles = {
@@ -239,7 +239,7 @@ export default function RegistrationPage() {
         handleSubmit(event);
       }}
     >
-      <Header text={"فرم ثبت نام"} path={usePathname()} />
+      <FormHeader text={"فرم ثبت نام"} path={usePathname()} />
 
       <label className={Styles.labelStyle_1}>
         <span className={Styles.labelHeadStyle_1}>نام :</span>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import ModeToggle from "./ModeToggleButton";
 
-export default function Header({ text, path }: { text: string; path: string }) {
+export default function FormHeader({ text, path }: { text: string; path: string }) {
   const [backIcon, setBackIcon] = useState<React.ReactNode | null>(null);
   useEffect(() => {
     if (path === "/") {

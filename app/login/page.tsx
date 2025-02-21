@@ -1,8 +1,7 @@
 "use client";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import Header from "@/app/_components/Header";
+import FormHeader from "@/app/_components/FormHeader";
 import SubmitInput from "@/app/_components/SubmitInput";
 import FormFooter from "../_components/FormFooter";
 
@@ -89,7 +88,7 @@ export default function LoginPage() {
         handleSubmit({ event });
       }}
     >
-      <Header text={"ورود به حساب کاربری"} path={usePathname()} />
+      <FormHeader text={"ورود به حساب کاربری"} path={usePathname()} />
       <label className={Styles.labelStyle_1}>
         <span className={Styles.labelHeadStyle_1}>حساب کاربری :</span>
         <input
