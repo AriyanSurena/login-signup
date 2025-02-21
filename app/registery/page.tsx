@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Header from "../_components/header";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function RegistrationPage() {
@@ -29,6 +29,13 @@ export default function RegistrationPage() {
     userAcceptedRules: false,
   });
 
+  const [isFNameTrue, setIsFNameTrue] = useState<boolean>(false);
+  const [isLNameTrue, setIsLNameTrue] = useState<boolean>(false);
+  const [isEmailTrue, setIsEmailTrue] = useState<boolean>(false);
+  const [isPassTrue, setIsPassTrue] = useState<boolean>(false);
+  const [isPassConfirmwed, setIsPassConfirmed] = useState<boolean>(false);
+  const [isRulesAccepted, setIsRulesAccepted] = useState<boolean>(false);
+
   function handleInputs(value: string | boolean, key: string): void {
     let errorBox;
     switch (key) {
@@ -37,14 +44,17 @@ export default function RegistrationPage() {
           errorBox = document.getElementsByClassName("error_message")[0];
           if ((value as string).length < 3) {
             errorBox.innerHTML = "نام باید بیشتر از 3 حرف باشد.";
+            setIsFNameTrue(false);
           } else if ((value as string).length > 30) {
             errorBox.innerHTML = "نام باید کمتر از 30 حرف باشد.";
+            setIsFNameTrue(false);
           } else {
             errorBox.innerHTML = "";
             setPersonInfo((prevInfo) => ({
               ...prevInfo,
               userFirstName: value as string,
             }));
+            setIsFNameTrue(true);
           }
         }
         break;
@@ -53,14 +63,17 @@ export default function RegistrationPage() {
           errorBox = document.getElementsByClassName("error_message")[1];
           if ((value as string).length < 3) {
             errorBox.innerHTML = "نام خانوادگی باید بیشتر از 3 حرف باشد.";
+            setIsLNameTrue(false);
           } else if ((value as string).length > 30) {
             errorBox.innerHTML = "نام خانوادگی باید کمتر از 30 حرف باشد.";
+            setIsLNameTrue(false);
           } else {
             errorBox.innerHTML = "";
             setPersonInfo((prevInfo) => ({
               ...prevInfo,
               userLastName: value as string,
             }));
+            setIsLNameTrue(true);
           }
         }
         break;
@@ -75,8 +88,10 @@ export default function RegistrationPage() {
               ...prevInfo,
               userEmailAddress: value as string,
             }));
+            setIsEmailTrue(true);
           } else {
             errorBox.innerHTML = "ایمیل نامعتبر است.";
+            setIsEmailTrue(false);
           }
         }
         break;
@@ -122,7 +137,9 @@ export default function RegistrationPage() {
               ...prevInfo,
               userPassword: value as string,
             }));
+            setIsPassTrue(true);
           } else {
+            setIsPassTrue(false);
             errorBox.innerHTML = `پسورد باید شامل حداقل:<br> ${errorMessages.join(
               "<br>"
             )}`;
@@ -142,7 +159,9 @@ export default function RegistrationPage() {
               ...prevInfo,
               userPassConfirm: value as string,
             }));
+            setIsPassConfirmed(true);
           } else {
+            setIsPassConfirmed(false);
             console.log("3" + " : " + value + " !!! " + person.userPassword);
             errorBox.innerHTML = `<span class="text-red-500">رمز مشابه نیست</span>`;
           }
@@ -151,10 +170,11 @@ export default function RegistrationPage() {
 
       case "rulesCheckBox":
         {
-          setPersonInfo((prevInfo) => ({
-            ...prevInfo,
-            userAcceptedRules: value as boolean,
-          }));
+            setPersonInfo((prevInfo) => ({
+              ...prevInfo,
+              userAcceptedRules: value as boolean,
+            }));
+            setIsRulesAccepted(prev => !prev);
         }
         break;
 
@@ -176,8 +196,29 @@ export default function RegistrationPage() {
     alert(userInfo);
   };
 
-  const passwordMatch = person.userPassword === person.userPassConfirm;
-  const isSubmitable = !person.userAcceptedRules || !passwordMatch;
+  const [isSubmitable, setIsSubmitable] = useState<boolean>(true); // true means Disabed mode is Active.
+  const [isPasswordMatch, setPasswordMatch] = useState(false); 
+  useEffect(()=>{
+    if(person.userPassword === person.userPassConfirm) {
+      setPasswordMatch(true);
+    } else setPasswordMatch(false);
+  }, [person.userPassword, person.userPassConfirm])
+  
+
+  useEffect(() => {
+    const isFormValid = isFNameTrue && 
+      isLNameTrue && 
+      isEmailTrue && 
+      isPasswordMatch && 
+      isPassTrue && 
+      isPassConfirmwed && 
+      isRulesAccepted;
+    if(isFormValid) {
+      setIsSubmitable(false);
+    } else {
+      setIsSubmitable(true);
+    }
+  }, [isFNameTrue, isLNameTrue, isEmailTrue, isPasswordMatch, person.userPassword, person.userPassConfirm, person.userAcceptedRules, isPassTrue, isPassConfirmwed, isRulesAccepted])
 
   return (
     <form
