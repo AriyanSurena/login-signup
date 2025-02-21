@@ -37,6 +37,11 @@ form {
   border-left: 3px solid red;
 }
 
+.error_message_green {
+  color: green;
+  border-left: 3px solid green;
+}
+
 ::placeholder, a{
   user-select: none;
 }

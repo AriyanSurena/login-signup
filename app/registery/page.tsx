@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import Header from "@/app/_components/Header";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -152,20 +151,19 @@ export default function RegistrationPage() {
       case "passConfirmField":
         {
           errorBox = document.getElementsByClassName("error_message")[4];
-          const passwordValue = person.userPassword;
-          console.log("1" + " : " + value + " = " + person.userPassword);
+          const passwordValue =  person.userPassword
           if (passwordValue === value) {
-            console.log("2" + " : " + value + " === " + person.userPassword);
-            errorBox.innerHTML = `<span class="text-green-500">رمز مشابه است</span>`;
+            errorBox.innerHTML = `<span class="text-green-500">رمز مشابه است.</span>`;
             setPersonInfo((prevInfo) => ({
               ...prevInfo,
               userPassConfirm: value as string,
             }));
             setIsPassConfirmed(true);
+            errorBox.classList.add("error_message_green")
           } else {
             setIsPassConfirmed(false);
             console.log("3" + " : " + value + " !!! " + person.userPassword);
-            errorBox.innerHTML = `<span class="text-red-500">رمز مشابه نیست</span>`;
+            errorBox.innerHTML = `<span class="text-red-500">رمز مشابه نیست!</span>`;
           }
         }
         break;
