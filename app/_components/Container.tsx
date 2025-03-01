@@ -21,7 +21,7 @@ export default function Container({ children }: ContainerProps) {
     >
       <section
         className={clsx(
-          "flex flex-col p-4 mx-auto rounded transition duration-500 shadow-[0_0px_100px_0px_rgb(169,169,169)] w-full sm:w-[100%] md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[40%]",
+          "flex flex-col p-4 mx-auto rounded transition duration-500 lg:shadow-[0_0px_100px_0px_rgb(169,169,169)] xl:shadow-[0_0px_100px_0px_rgb(169,169,169)] 2xl:shadow-[0_0px_100px_0px_rgb(169,169,169)] w-full sm:w-[100%] md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[40%]",
           {
             "bg-[#222222] text-white": isDarkMode, // Dark Mode
             "bg-[#e4f3ff] text-black": !isDarkMode, // Light Mode
